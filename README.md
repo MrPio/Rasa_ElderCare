@@ -48,7 +48,6 @@ Roughly, the pipeline can be divided into:
 3. *Entity post-processing* - I found the Facebook's [DucklingEntityExtractor](https://github.com/facebook/duckling) to perform amazingly well at extracting dates and times from user input. I run it as a Docker container with `docker run -p 8000:8000 rasa/duckling`.
    
 4. *Fallback recognition* - When the `FallbackClassifier` doesn't find any action having a confidence score greater than the predefined *threshold*, it selects the fallback response, which asks the user to repeat.
-5. 
 
 <a id="2"></a>
 ## ⚙️ How to run the chatbot
