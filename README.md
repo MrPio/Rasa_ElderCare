@@ -38,12 +38,12 @@ Rasa's architecture is in line with the CBDP philosophy. In [`config.yml`](confi
 
 Roughly, the pipeline can be divided into:
 1. *Feature extraction* - The user's input is encoded into a vector of features. By default this is done by two `CountVectorsFeaturize` components, one for word level and the other for **character level to account for typos**. 
-    >[!NOTE]
-    > `CountVectorsFeaturize`  is essentially a *Bag of Words* encoder. A more powerful approach is the use of a *BERT* transofrmer to embed the sentences in a dense space.
+>[!NOTE]
+> `CountVectorsFeaturize`  is essentially a *Bag of Words* encoder. A more powerful approach is the use of a *BERT* transofrmer to embed the sentences in a dense space.
 
 2. *Intent classification* - The default classifier is the `DIETClassifier`. It is a Feed Forward neural network that takes the embedded features and produces a confidence distribution over all the defined intents.
-    >[!NOTE]
-    > `LogisticRegressionClassifier` is a lighter alternative, i.e. shorter training and model loading time, to the `DIETClassifier`. Moreover, the entity extraction task can be delegated to the `CRFEntityExtractor` component, which has proven to work very well in *NER*.
+>[!NOTE]
+> `LogisticRegressionClassifier` is a lighter alternative, i.e. shorter training and model loading time, to the `DIETClassifier`. Moreover, the entity extraction task can be delegated to the `CRFEntityExtractor` component, which has proven to work very well in *NER*.
 
 3. *Entity post-processing* - I found the Facebook's [DucklingEntityExtractor](https://github.com/facebook/duckling) to perform amazingly well at extracting dates and times from user input. I run it as a Docker container with `docker run -p 8000:8000 rasa/duckling`.
    
